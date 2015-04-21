@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<prerequisites><maven>3.0.4</maven></prerequisites>
+
+	<groupId>com.elecomte.rs</groupId>
+	<artifactId>rs-net</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1-SNAPSHOT</version>
+
+	<name>RS NET Parent project</name>
+	<description><![CDATA[ Fly little Edouard ! ]]></description>
+
+	<modules>
+		<module>api</module>
+	</modules>
+
+	<properties>
+	
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		
+		<dependency.spring-boot.version>1.2.1.RELEASE</dependency.spring-boot.version>
+		<dependency.logback-classic.version>1.1.2</dependency.logback-classic.version>
+		<dependency.jcl-over-slf4j.version>1.7.10</dependency.jcl-over-slf4j.version>
+		<dependency.junit.version>4.12</dependency.junit.version>
+		<dependency.hibernate-validator.version>5.1.3.Final</dependency.hibernate-validator.version>
+		<dependency.jackson-mapper.version>1.8.5</dependency.jackson-mapper.version>
+		<dependency.json-path-assert.version>1.2.0</dependency.json-path-assert.version>
+
+		<dependency.bluecove.version>2.1.1</dependency.bluecove.version>
+
+		<webjar.jquery.version>2.0.3-1</webjar.jquery.version>
+		<webjar.bootstrap.version>3.3.1</webjar.bootstrap.version>
+		<webjar.bootswatch-yeti.version>3.3.1+2</webjar.bootswatch-yeti.version>
+		<webjar.angularjs.version>1.3.15</webjar.angularjs.version>
+		<webjar.angular-strap.version>2.1.4</webjar.angular-strap.version>
+		<webjar.angular-loading-bar.version>0.7.1</webjar.angular-loading-bar.version>
+
+		<plugin.maven-clean.version>2.5</plugin.maven-clean.version>
+		<plugin.maven-help.version>2.2</plugin.maven-help.version>
+		<plugin.maven-compiler.version>2.5.1</plugin.maven-compiler.version>
+		<plugin.maven-assembly.version>2.4</plugin.maven-assembly.version>
+		<plugin.maven-license.version>1.10.b1</plugin.maven-license.version>
+		<plugin.maven-resources.version>2.6</plugin.maven-resources.version>
+		<plugin.build-helper.version>1.9.1</plugin.build-helper.version>
+		<plugin.spring-boot.version>${dependency.spring-boot.version}</plugin.spring-boot.version>
+		<plugin.maven-war.version>2.6</plugin.maven-war.version>
+		<plugin.m2e-mapping.version>1.0.0</plugin.m2e-mapping.version>
+		<plugin.yuicompressor.version>1.5.1</plugin.yuicompressor.version>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>LGPL</name>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>2</id>
+			<name>Emmanuel Lecomte</name>
+			<email>perso@elecomte.com</email>
+			<roles>
+				<role>Java developer</role>
+			</roles>
+			<timezone>1</timezone>
+			<properties>
+				<picUrl>http://www.gravatar.com/avatar/28aaea65e6b0835950eeb4422569783e.png</picUrl>
+			</properties>
+		</developer>
+	</developers>
+
+	<profiles>
+		<profile>
+			<id>m2e</id>
+			<activation>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<properties>
+				<config.environment>dev</config.environment>
+			</properties>
+		</profile>
+
+	</profiles>
+
+	<build>
+
+		<pluginManagement>
+			<plugins>
+
+				<!-- Cleaner of generated resources -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${plugin.maven-clean.version}</version>
+				</plugin>
+
+				<!-- Provides info on current maven tasks -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-help-plugin</artifactId>
+					<version>${plugin.maven-help.version}</version>
+				</plugin>
+
+				<!-- Root java compiler wrapper -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${plugin.maven-compiler.version}</version>
+				</plugin>
+
+				<!-- Extended build process from dedicated assembly descriptors -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${plugin.maven-assembly.version}</version>
+				</plugin>
+
+				<!-- Need to fix resources plugin version to avoid bug http://jira.codehaus.org/browse/MRESOURCES-141 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${plugin.maven-resources.version}</version>
+					<configuration>
+						<delimiters>
+							<delimiter>${*}</delimiter>
+						</delimiters>
+						<useDefaultDelimiters>false</useDefaultDelimiters>
+					</configuration>
+				</plugin>
+
+				<!-- Spring boot dedicated plugin for startup process on dev environment -->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${plugin.spring-boot.version}</version>
+				</plugin>
+
+				<!-- War packaging -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${plugin.maven-war.version}</version>
+				</plugin>
+
+				<!-- Force set config at m2e level to ignore some build related goals -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>${plugin.m2e-mapping.version}</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-help-plugin</artifactId>
+										<versionRange>[1.0,)</versionRange>
+										<goals>
+											<goal>active-profiles</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>net.alchim31.maven</groupId>
+										<artifactId>yuicompressor-maven-plugin</artifactId>
+										<versionRange>[1.0,)</versionRange>
+										<goals>
+											<goal>compress</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+
+				<!-- For JS files agregation -->
+				<plugin>
+					<groupId>net.alchim31.maven</groupId>
+					<artifactId>yuicompressor-maven-plugin</artifactId>
+					<version>${plugin.yuicompressor.version}</version>
+				</plugin>
+
+			</plugins>
+
+		</pluginManagement>
+
+		<!-- Default shared build tasks -->
+		<plugins>
+
+			<!-- Complete default informations about used source code -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Provides info on current maven tasks -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-help-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>display-profiles</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>active-profiles</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<!-- ##### SPRING BOOT MAIN ##### -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${dependency.spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+				<version>${dependency.spring-boot.version}</version>
+			</dependency>
+
+
+			<!-- ##### TEST DEPENDENCIES ##### -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${dependency.spring-boot.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${dependency.junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>com.jayway.jsonpath</groupId>
+				<artifactId>json-path-assert</artifactId>
+				<version>${dependency.json-path-assert.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- ##### WEB DEPENDENCIES ##### -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${dependency.spring-boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-tomcat</artifactId>
+				<version>${dependency.spring-boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${dependency.jackson-mapper.version}</version>
+			</dependency>
+
+
+			<!-- ##### UTILS AND FEATURE DEPENDENCIES ##### -->
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${dependency.hibernate-validator.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+
+			<!-- ##### BLUETOOTH STACK ##### -->
+			<dependency>
+				<groupId>net.sf.bluecove</groupId>
+				<artifactId>bluecove</artifactId>
+				<version>${dependency.bluecove.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.bluecove</groupId>
+				<artifactId>bluecove-gpl</artifactId>
+				<version>${dependency.bluecove.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sf.bluecove</groupId>
+				<artifactId>bluecove-bluez</artifactId>
+				<version>${dependency.bluecove.version}</version>
+			</dependency>
+			
+			<!-- ##### JS LIBS MANAGED AS DEPENDENCIES (WEBJARS) ##### -->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jquery</artifactId>
+				<version>${webjar.jquery.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap</artifactId>
+				<version>${webjar.bootstrap.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootswatch-yeti</artifactId>
+				<version>${webjar.bootswatch-yeti.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>angularjs</artifactId>
+				<version>${webjar.angularjs.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>angular-strap</artifactId>
+				<version>${webjar.angular-strap.version}</version>
+			</dependency>
+
+			<dependency>
+			    <groupId>org.webjars</groupId>
+			    <artifactId>angular-loading-bar</artifactId>
+			    <version>${webjar.angular-loading-bar.version}</version>
+			</dependency>
+
+
+		</dependencies>
+
+	</dependencyManagement>
+
+
+	<!-- ++++++++++++++++++++++++++++++++ -->
+	<!-- ++ PARENT SHARED DEPENDENCIES ++ -->
+	<!-- ++++++++++++++++++++++++++++++++ -->
+
+	<dependencies>
+		<!-- None set at parent level -->
+	</dependencies>
+
+
+	<!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ++ EXTENSION OF DEPENDENCY REPOSITORY SERVERS ++ -->
+	<!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+	<repositories>
+
+		<!-- Extension to default : Spring RELEASE distribution for dependencies -->
+		<repository>
+			<id>spring-releases</id>
+			<name>Spring Releases</name>
+			<url>https://repo.spring.io/libs-release</url>
+		</repository>
+
+		<!-- Overhide default : maven standard repository clone -->
+		<repository>
+			<id>org.jboss.repository.releases</id>
+			<name>JBoss Maven Release Repository</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+		</repository>
+
+	</repositories>
+
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!-- ++ EXTENSION OF PLUGINS REPOSITORY SERVERS ++ -->
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++ -->
+
+	<pluginRepositories>
+
+		<!-- Extension to default : Spring RELEASE distribution for plugins -->
+		<pluginRepository>
+			<id>spring-releases</id>
+			<name>Spring Releases</name>
+			<url>https://repo.spring.io/libs-release</url>
+		</pluginRepository>
+
+	</pluginRepositories>
+
+</project>
