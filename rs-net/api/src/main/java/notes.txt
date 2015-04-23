@@ -1,0 +1,24 @@
+interface BLEAccess
+#listDevices() : return List<DeviceIdentifier>
+#connect(DeviceIdentifier) : return instance BLEConnectService
+
+Généralisation des aspects BLE : pour l'utilisation du device
+
+interface BLEDeviceService
+#setCharacteristic(CharacteristicIdentifier) : return value
+#getDeviceSpec() : return instance DeviceSpec avec liste des characteristics, des services ...
+#getCharacteristic(CharacteristicIdentifier, value)
+
+Implémentations :
+
+Implémentations simples utilisant une interface BLEProcessor
+Interface NonContextualBLEProcessor héritant de BLEProcessor
+Et une Implementation par défaut crade utilisant l'appel de processus systèmes !
+
+Par dessus cette généralisation BLE, Implémentation RollingSpider
+
+RollingSpiderAccess : recherche et connexion, pour avoir un
+RollingSpiderControl : methodes reprenant les actions du device. Tout traitement technique est masqué
+
+et si on part d'un service RestFull => Pas de connexion necessaire ?
+

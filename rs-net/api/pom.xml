@@ -49,20 +49,16 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 
-		<!-- ##### BLUETOOTH STACK ##### -->
 		<dependency>
-			<groupId>net.sf.bluecove</groupId>
-			<artifactId>bluecove</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>net.sf.bluecove</groupId>
-			<artifactId>bluecove-gpl</artifactId>
-		</dependency>
 
+		<!-- ##### TEST DEPENDENCIES ##### -->
 		<dependency>
-			<groupId>net.sf.bluecove</groupId>
-			<artifactId>bluecove-bluez</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 	</dependencies>
 </project>
