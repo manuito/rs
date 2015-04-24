@@ -12,8 +12,9 @@ public class RollingSpider {
 
 	private final DeviceIdentifier dev;
 
-	private boolean initDone;
-	
+	/**
+	 * @param dev
+	 */
 	public RollingSpider(DeviceIdentifier dev) {
 		super();
 		this.dev = dev;
@@ -41,4 +42,7 @@ public class RollingSpider {
 		return this.dev;
 	}
 
+	public String getKey() {
+		return this.surname + " " + this.dev.getAddress();
+	}
 }

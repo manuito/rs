@@ -1,6 +1,9 @@
 package com.elecomte.rs.ble;
 
+import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Emmanuel Lecomte (elecomte)
@@ -8,18 +11,25 @@ import java.util.List;
  */
 public class DeviceSpec {
 
-	private final List<CharacteristicIdentifier> chars;
+	private final Map<String, CharacteristicIdentifier> chars = new LinkedHashMap<>();
 
 	public DeviceSpec(List<CharacteristicIdentifier> chars) {
 		super();
-		this.chars = chars;
+		chars.forEach(ch -> this.chars.put(ch.getUuid(), ch));
 	}
 
 	/**
 	 * @return the chars
 	 */
-	public List<CharacteristicIdentifier> getChars() {
-		return this.chars;
+	public Collection<CharacteristicIdentifier> getChars() {
+		return this.chars.values();
 	}
 
+	/**
+	 * @param uuid
+	 * @return
+	 */
+	public CharacteristicIdentifier getIdentifier(String uuid) {
+		return this.chars.get(uuid);
+	}
 }

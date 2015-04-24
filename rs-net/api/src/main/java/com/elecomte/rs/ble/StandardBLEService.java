@@ -1,6 +1,7 @@
 package com.elecomte.rs.ble;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,15 +32,19 @@ public class StandardBLEService implements BLEService {
 	}
 
 	@Override
-	public void setDeviceCharacteristic(DeviceIdentifier id, CharacteristicIdentifier identifier, String value) {
-		// TODO Auto-generated method stub
-
+	public void setDeviceCharacteristic(DeviceIdentifier id, CharacteristicIdentifier charId, String value) {
+		this.processor.writeCharacteristic(id, charId, value);
 	}
 
 	@Override
-	public String getDeviceCharacteristic(DeviceIdentifier id, CharacteristicIdentifier identifier) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getDeviceCharacteristic(DeviceIdentifier id, CharacteristicIdentifier charId) {
+		return this.processor.readCharacteristic(id, charId);
+	}
+
+	@Override
+	public void addDeviceCharacteristicListener(DeviceIdentifier id, CharacteristicIdentifier charId,
+			Consumer<String> listener) {
+		this.processor.launchCharacteristicListener(id, charId, listener);
 	}
 
 }
