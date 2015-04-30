@@ -6,6 +6,7 @@ Rolling Spider test
 ### Work folder
 
     mkdir work-rs
+    cd work-rs
 
 ### Check python is their
 
@@ -23,9 +24,11 @@ Rolling Spider test
 
 ### Install system libs 
 
-    sudo apt-get install libdbus-1-dev libdbus-glib-1-dev libglib2.0-dev libical-dev libreadline-dev libudev-dev libusb-dev make build-essential g++ python-dev autotools-dev libicu-dev build-essential libbz2-dev libboost-all-dev
+    sudo apt-get install libdbus-1-dev libdbus-glib-1-dev libglib2.0-dev libical-dev libreadline-dev libudev-dev libusb-dev make build-essential g++ python-dev autotools-dev libicu-dev build-essential libbz2-dev libboost-all-dev libperl-dev libgtk2.0-dev libbluetooth-dev
 
 ### Install python modules frm 
 
-    bin/pip install gattlib
+    sudo pip install gattlib
+
+
 
